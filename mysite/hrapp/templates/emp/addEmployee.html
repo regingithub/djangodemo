@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add/List Employees</title>
+    </head>
+    <body>
+        <h1>Add Employee</h1>
+        <form name="empfrm" method='POST' action='addemployee'>
+            {{form.as_p}}
+            {% csrf_token %}
+        </form>   
+        <br/>
+        <input type='submit' value="Add Employee" onclick="document.empfrm.submit();"></input>
+        <h1>Employee List</h1>
+        {% if employees  %}
+        <table>
+            <thead>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Middlename</th>
+                <th>DOB</th>
+                <th>Date of joining</th>
+                {% for emp in employees %}
+                <tr>
+                    <td>{{ emp.first_name}}</td>
+                    <td>{{ emp.last_name}}</td>
+                    <td>{{ emp.middle_name}}</td>
+                    <td>{{ emp.DOB}}</td>
+                    <td>{{ emp.join_date}}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+            <p>No Employees Found</p>
+            {%endif%}
+    </body>
+</html>
